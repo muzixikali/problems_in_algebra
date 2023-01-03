@@ -1,0 +1,280 @@
+\chapter{多项式}
+\section{多项式整除}
+
+\begin{knowledge}[多项式环]
+    数域$\mathbb{K}$上一元多项式的全体记为$\mathbb{K}[x]$,称为多项式环。
+\end{knowledge}
+
+\begin{knowledge}[带余除法]
+    设$f(x),g(x)\in \mathbb{K}[x]$,且$g(x)\ne 0$,则存在唯一的$q(x)$及$r(x)\in \mathbb{K}[x]$,使得
+    \begin{equation}
+        f(x)=q(x)g(x)+r(x)
+    \end{equation}
+
+    其中,$r(x)=0$或$\deg r(x)<\deg g(x)$
+
+    若$r(x)=0$,则称$g(x)$整除$f(x)$,记为$g(x)\mid f(x)$
+\end{knowledge}
+
+\begin{knowledge}[多项式等价]
+    设$f(x),g(x)\in \mathbb{K}[x]$,则
+    \begin{equation}
+        g(x)\mid f(x)\mbox{且}f(x)\mid g(x) \Longleftrightarrow \exists c\ne 0\in \mathbb{K},\mbox{使得}f(x)=cg(x)
+    \end{equation}
+\end{knowledge}
+
+\begin{knowledge}[整除的传递性] \label{整除的传递性}
+    若$f(x),g(x),h(x)\in \mathbb{K}$,满足$f(x)\mid g(x)$且$g(x)\mid h(x)$,则$f(x)\mid h(x)$
+\end{knowledge}
+
+\begin{knowledge}[整除线性组合]
+    \label{整除线性组合}
+    设$g(x)|f_{i}(x)(i=1,2,\cdots,s)$,则对任意的$u_i(x)\in \mathbb{K}[x]$,有$g(x)\mid \overset{s}{\underset{i=1}{\sum}}u_i(x)f_i(x)$
+\end{knowledge}
+
+\begin{knowledge}[数域扩张不影响整除性]
+    多项式的整除性与系数所在数域的扩张无关. 即:
+
+    若数域$\mathbb{K}_1\subset \mathbb{K}_2$,而$f(x),g(x)\in \mathbb{K}_1$,则
+    \begin{equation}
+        \mbox{在$\mathbb{K}_1[x]$中}f(x)\mid g(x)\Longrightarrow \mbox{在$\mathbb{K}_2[x]$中}f(x)\mid g(x)
+    \end{equation}
+\end{knowledge}
+
+\begin{example}
+    设多项式$f(x)=(x+1)^{k+n}+2x(x+1)^{k+n-1}+\cdots +(2x)^k(x+1)^n$,其中$k,n$都是正整数,证明:
+    \begin{equation*}
+        x^{k+1}\mid [(x-1)f(x)+(x+1)^{k+n+1}]
+    \end{equation*}
+\end{example}
+
+\begin{proof}
+    提公因式,得
+    \begin{equation*}
+        f(x)=(x+1)^n[(x+1)^k+2x(x+1)^{k-1}+\cdots + (2x)^k]
+    \end{equation*}
+
+    注意到公式
+    \begin{equation}
+        a^{n+1}-b^{n+1}=(a-b)(a^n+ab^{n-1}+\cdots +b^n) \label{1.1.4}
+    \end{equation}
+
+
+    故
+    \begin{equation*}
+        (1-x)f(x)=[(x+1)-2x]f(x)=(x+1)^n[(x+1)^{k+1}-(2x)^{k+1}]
+    \end{equation*}
+
+    则
+    \begin{equation*}
+        (x-1)f(x)+(x+1)^{k+n+1}=(x+1)^n[(x+1)^{k+1}-(x+1)^{k+1}+(2x)^{k+1}]=(x+1)^n(2x)^{k+1}
+    \end{equation*}
+
+    即$(x-1)f(x)+(x+1)^{k+n+1}=[2^{k+1}(x+1)^n]x^{k+1}$,故$x^{k+1}\mid [(x-1)f(x)+(x+1)^{k+n+1}]$得证
+\end{proof}
+
+\clearpage
+
+\begin{example}
+    设$m,n,p$都是非负整数,证明:$(x^2+x+1)\mid (x^{3m}+x^{3n+1}+x^{3p+2})$
+\end{example}
+
+\begin{proof}
+
+    [法1]
+
+    利用公\cref{1.1.4}可知
+    \begin{equation*}
+        x^{3k}-1=(x^3)^k-1=(x^3-1)[(x^3)^{k-1}+(x^3)^{k-2}+\cdots +1]=(x-1)(x^2+x+1)(x^{3k-3}+x^{3k-6}+\cdots +1)
+    \end{equation*}
+
+    故$(x^2+x+1)\mid (x^{3k}-1)$
+
+    而
+    \begin{equation*}
+        x^{3m}+x^{3n+1}+x^{3p+2}=(x^{3m}-1)+x(x^{3n}-1)+x^2(x^{3p}-1)+(1+x+x^2)
+    \end{equation*}
+
+    由\cref{整除线性组合}可得,$(x^2+x+1)\mid (x^{3m}+x^{3n+1}+x^{3p+2})$
+
+    [法2]
+
+    设$\omega_1,\omega_2$是$x^2+x+1$的两个根,则有$\omega_i^2+\omega_i+1=0$
+
+    且$\omega_i^3-1=(\omega_i-1)(\omega_i^2+\omega_i+1)=0$,即$\omega_i^3=1(i=1,2)$
+
+    故
+    \begin{equation*}
+        \omega_i^{3m}+\omega_i^{3n+1}+\omega_i^{3p+2}=1+\omega_i+\omega_i^2=0
+    \end{equation*}
+
+    即
+    \begin{equation*}
+        (x-\omega_i)\mid x^{3m}+x^{3n+1}+x^{3p+2}
+    \end{equation*}
+
+    又$(x-\omega_1,x-\omega_2)=1$,
+    故$x^2+x+1=(x-\omega_1)(x-\omega_2)\mid (x^{3m}+x^{3n+1}+x^{3p+2})$
+\end{proof}
+
+\begin{example}
+    设$f(x),g(x),h(x),p(x)$均为实系数多项式,且满足
+    \begin{equation}
+        (x^2+1)h(x)+(x-1)f(x)+(x-1)g(x)=0   \label{1.1.5}
+    \end{equation}
+    \begin{equation}
+        (x^2+1)p(x)+(x+1)f(x)+(x+2)g(x)=0   \label{1.1.6}
+    \end{equation}
+
+    证明:$f(x),g(x)$均被$x^2+1$整除
+\end{example}
+
+\begin{proof}
+
+    [法1]
+
+    \cref{1.1.5}$\times$ (x+2)-\cref{1.1.6}$\times$ (x-1)得
+    \begin{equation*}
+        (x^2+1)[(x+2)h(x)-(x-1)p(x)]+[(x-1)(x+2)-(x+1)(x-1)]f(x)=0
+    \end{equation*}
+
+    即$-(x-1)f(x)=(x^2+1)[(x+2)h(x)-(x-1)p(x)]$
+
+    故$(x^2+1)\mid (x-1)f(x)$
+
+    又$(x-1,x^2+1)=1$,则$(x^2+1)\mid f(x)$
+
+    同理得,$(x^2+1)\mid g(x)$
+
+    [法2]
+
+    在\cref{1.1.5},\cref{1.1.6}中令$x=i$得
+    \begin{equation*}
+        (i-1)f(i)+(i-1)g(i)=0
+    \end{equation*}
+    \begin{equation*}
+        (i+1)f(i)+(i+2)g(i)=0
+    \end{equation*}
+
+    解得$f(i)=0,g(i)=0$,故$(x-i)\mid f(x),(x-i)\mid g(x)$
+
+    同理,在\cref{1.1.5},\cref{1.1.6}中令$x=-i$得
+    \begin{equation*}
+        (-i-1)f(-i)+(-i-1)g(-i)=0
+    \end{equation*}
+    \begin{equation*}
+        (-i+1)f(-i)+(-i+2)g(-i)=0
+    \end{equation*}
+
+    解得$f(-i)=0,g(-i)=0$,故$(x+i)\mid f(x),(x+i)\mid g(x)$
+
+    又$(x+i,x-i)=1$,则
+    $x^2+1=(x+i)(x-i)\mid f(x),x^2+1=(x+i)(x-i)\mid g(x)$
+\end{proof}
+
+\clearpage
+
+\begin{knowledge}[综合除法]
+    设被除式为$f(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots +a_1 x+a_0$
+
+    设除式为$g(x)=x-r$
+
+    设商为$q(x)=b_{n-1}x^{n-1}+\cdots +b_1x+b_0$
+
+    设余数为$s$
+
+    若已知$f(x)$,$g(x)$,可则根据表\ref{综合除法}计算$q(x),s$
+\end{knowledge}
+
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{c|ccccc}
+        & $a_n$ & $a_{n-1}$ & $\cdots$ & $a_1$ & $a_0$ \\ 
+        r & & $b_{n-1}r$ & $\cdots$ & $b_1r$ & $b_0$\\ 
+        \hline 
+        & $a_n$ & $a_{n-1}+b_{n-1}r$ & $\cdots$ & $a_1+b_1r$ & $a_0+b_0r$ \\ 
+        & = $b_{n-1}$ & $b_{n-2}$ & $\cdots$ & $b_0$ & s
+    \end{tabular}
+    \caption{综合除法表格}
+    \label{综合除法}
+\end{table}
+
+\begin{example}
+    利用综合除法将$2x^4+x^3+7x^2-8x+14$表示成$ax(x-1)(x-2)(x-3)+bx(x-1)(x-2)+cx(x-1)+dx+e$,
+    求出$a,b,c,d,e$的值(必须列出综合除法算式)
+\end{example}
+
+\begin{solution}
+    先后用综合除法除以$x,x-1,x-2,x-3$得到余数$e,d,c,b$和最后的商$a$:
+\end{solution}
+
+\begin{table*}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{c|ccccc}
+        & 2 & 1 & 7 & -8 & 14\\ 
+        0 & & 0 & 0 & 0 & 0 \\ 
+        \hline 
+        & 2 & 1 & 7 & -8 & e=14 \\
+        1 & & 2 & 3 & 10 & \\ 
+        \hline
+        & 2 & 3 & 10 & d=2 & \\ 
+        2 & & 4 & 14 &  \\ 
+        \hline 
+        & 2 & 7 & c=24 \\ 
+        3 & & 6 & \\ 
+        \hline
+        & a=2 & b=13 & 
+    \end{tabular}
+\end{table*}\
+
+\vspace{-16pt}
+\begin{example}
+    设$m$是大于1的正整数,多项式$f(x)=x^{m-1}+x^{m-2}+\cdots +x+1$,试求所有满足$f(x)\mid {[f(x^m)+c]}$的常数$c$
+\end{example}
+
+\begin{solution}
+    \begin{equation*}
+        f(x^m)=(x^m)^{m-1}+(x^m)^{m-2}+\cdots + x^m+1
+    \end{equation*}
+
+    当$c=-m$时,
+    \begin{equation*}
+        f(x^m)-m=((x^m)^{m-1}-1)+((x^m)^{m-2}-1)+\cdots + (x^m-1)
+    \end{equation*}
+    \begin{equation*}
+        =(x^m-1)[\overset{m-2}{\underset{i=0}{\sum}}(x^m)^i+\overset{m-3}{\underset{i=0}{\sum}}(x^m)^i+\cdots
+        1]
+    \end{equation*}
+
+    故$(x^m-1)\mid [f(x^m)-m]$,又$f(x)\mid (x^m-1)$,则由\cref{整除的传递性}得,$f(x)\mid [f(x^m)-m]$
+
+    \vspace{4pt}
+    另一方面,若常数c满足$f(x)\mid [f(x^m)+c]$,则
+    \begin{equation*}
+        f(x)\mid \{[f(x^m)-m]+(m+c)\}
+    \end{equation*}
+
+    因为$f(x)\mid [f(x^m)-m]$,所以$f(x)\mid (m+c)$
+
+    由于$\deg f(x)=m-1>0$,故只有$(m+c)=0$,即$c=-m$时才合理
+
+    \vspace{4pt}
+    综上,$c=-m \Longleftrightarrow f(x)\mid {[f(x^m)+c]}$,即满足$f(x)\mid {[f(x^m)+c]}$的常数$c$只有$-m$一个
+\end{solution}
+
+\begin{example}
+    证明:$(x^d-1)\mid (x^n-1)$的充分必要条件是$d\mid n$
+\end{example}
+
+\begin{proof}
+    设$n=md+r$,其中$0\le r <d$,则
+    \begin{equation*}
+        x^n-1=x^{md+r}-1=x^r[(x^d)^m-1]+x^r-1=x^r(x^d-1)[(x^d)^{m-1}+\cdots +1]+(x^r-1)
+    \end{equation*}
+
+    故$(x^d-1)\mid (x^n-1) \Longleftrightarrow (x^d-1)\mid (x^r-1)\Longleftrightarrow x^r-1=0\Longleftrightarrow r=0 \Longleftrightarrow n=md$
+
+    即$d\mid n$
+\end{proof}
