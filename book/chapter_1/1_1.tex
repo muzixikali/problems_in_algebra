@@ -16,7 +16,7 @@
     若$r(x)=0$,则称$g(x)$整除$f(x)$,记为$g(x)\mid f(x)$
 \end{knowledge}
 
-\begin{knowledge}[多项式等价]
+\begin{knowledge}[多项式等价]\label{多项式等价}
     设$f(x),g(x)\in \mathbb{K}[x]$,则
     \begin{equation}
         g(x)\mid f(x)\mbox{且}f(x)\mid g(x) \Longleftrightarrow \exists c\ne 0\in \mathbb{K},\mbox{使得}f(x)=cg(x)
@@ -37,7 +37,7 @@
 
     若数域$\mathbb{K}_1\subset \mathbb{K}_2$,而$f(x),g(x)\in \mathbb{K}_1$,则
     \begin{equation}
-        \mbox{在$\mathbb{K}_1[x]$中}f(x)\mid g(x)\Longrightarrow \mbox{在$\mathbb{K}_2[x]$中}f(x)\mid g(x)
+        \mbox{在$\mathbb{K}_1[x]$中}f(x)\mid g(x)\Longleftrightarrow \mbox{在$\mathbb{K}_2[x]$中}f(x)\mid g(x)
     \end{equation}
 \end{knowledge}
 
@@ -264,11 +264,12 @@
     综上,$c=-m \Longleftrightarrow f(x)\mid {[f(x^m)+c]}$,即满足$f(x)\mid {[f(x^m)+c]}$的常数$c$只有$-m$一个
 \end{solution}
 
-\begin{example}
+\begin{example} \label{例题1.1.6}
     证明:$(x^d-1)\mid (x^n-1)$的充分必要条件是$d\mid n$
 \end{example}
 
 \begin{proof}
+
     设$n=md+r$,其中$0\le r <d$,则
     \begin{equation*}
         x^n-1=x^{md+r}-1=x^r[(x^d)^m-1]+x^r-1=x^r(x^d-1)[(x^d)^{m-1}+\cdots +1]+(x^r-1)
@@ -277,4 +278,266 @@
     故$(x^d-1)\mid (x^n-1) \Longleftrightarrow (x^d-1)\mid (x^r-1)\Longleftrightarrow x^r-1=0\Longleftrightarrow r=0 \Longleftrightarrow n=md$
 
     即$d\mid n$
+\end{proof}
+
+\begin{example} \label{例题1.1.7}
+    证明:$(x^m-1,x^n-1)=x^d-1\Longleftrightarrow (m,n)=d$
+\end{example}
+
+\begin{proof}
+    令$h(x)=(x^m-1,x^n-1)$
+
+    【$(m,n)=d \Longrightarrow h(x)=x^d-1$】 
+
+    若$(m,n)=d$,则$\exists u,v\in \mathbb{Z}$,使得$d=mu+nv$,
+
+    若($u>0,v>0$)或($u<0,v<0$),则($d>m$且$d>n$)或(d<0),均不合理
+
+    显然,$uv<0$,不妨设$u>0,v<0$
+
+    由\cref{例题1.1.6}得,
+    $$d\mid m,d\mid n \Longleftrightarrow (x^d-1)\mid (x^m-1),(x^d-1)\mid (x^n-1)$$
+
+    故$(x^d-1)\mid h(x)$
+
+    另一方面,$x^{mu}-1=x^{d-nv}=x^{-nv}(x^d-1)+(x^{-nv}-1)$
+
+    而由\cref{整除的传递性}得$h(x)\mid (x^m-1)\mid (x^{mu}-1),h(x)\mid (x^n-1) \mid (x^{-nv}-1)$
+
+    则$h(x)\mid x^{-nv}(x^d-1)$，而$(h(x),x^{-nv})=1$,
+    
+    故$h(x)\mid (x^d-1)$
+
+    综上,由\cref{多项式等价}得,$h(x)=c(x^d-1)$
+
+    又$h(x)$首项系数为1,故$c=1$,即$h(x)=x^d-1$
+
+    【$ h(x)=x^d-1 \Longrightarrow (m,n)=d$】
+
+    若$h(x)=x^d-1$,令$(m,n)=e$
+
+    则由已证可知,$h(x)= x^e-1$
+
+    故$x^d-1=x^e-1\Longleftrightarrow d=e$,即$(m,n)=d$
+\end{proof}
+
+\begin{example}
+    设$m,n$是两个大于1的正整数,多项式
+    \begin{equation*}
+        f(x)=x^{m-1}+x^{m-2}+\cdots + x + 1
+    \end{equation*}
+    \begin{equation*}
+        g(x)=x^{n-1}+x^{n-2}+\cdots + x + 1
+    \end{equation*}
+
+    证明:$(f(x),g(x))=1 \Longleftrightarrow (m,n)=1$
+\end{example}
+
+\begin{proof}
+
+    [法1]
+
+    $x^m-1=(x-1)f(x)$,$x^n-1=(x-1)g(x)\xlongleftrightarrow{(f(x),g(x))=1} (x^m-1,x^n-1)=x-1$
+
+    根据\cref{例题1.1.6},有$(x^m-1,x^n-1)=x-1\Longleftrightarrow (m,n)=1$
+
+    [法2]
+
+    【$ (m,n)=1 \Longrightarrow (f(x),g(x))=1$】
+
+    设$\omega$是一个$n$次本原单位根,即$\omega^n=1$,则$\omega,\omega^2,\cdots \omega^{n-1}$是$g(x)$的全部根
+
+    对于$1\le k\le n-1$,若$f(\omega^k)=0$,则由$x^m-1=(x-1)f(x)$可知,$(\omega^k)^m=1$,
+
+    从而$n\mid km$,这与$(m,n)=1$矛盾,这说明$g(x)$的根都不是$f(x)$的根,即$(f(x),g(x))=1$
+
+    【$ (f(x),g(x))=1 \Longrightarrow  (m,n)=1$】
+
+    设$(m,n)=d>1$,且$m=m_1d,n=n_1d$,易知$1\le n_1<n$
+
+    由于$(\omega^{n_1})^m=(\omega)^{m_1n_1d}=(\omega^n)^{m_1}=1$,而$\omega^{n_1}\ne 1$,
+
+    所以$\omega^{n_1}$也是$f(x)$的根
+
+    这与$(f(x),g(x))=1$产生矛盾,故$(m,n)=1$
+\end{proof}
+
+\clearpage
+\begin{example}
+    设$f(x)=x^7+2x^6-6x^5-8x^4+19x^3+9x^2-22x+8$,$g(x)=x^2+x-2$,将$f(x)$表示成$g(x)$的方幂和,即将$f(x)$表示成
+    \begin{equation*}
+        f(x)=c_k(x)[g(x)]^k + c_{k-1}(x)[g(x)]^{k-1}+ \cdots +c_1(x)g(x)+c_0(x)
+    \end{equation*}
+    其中，$\deg c_i(x)<\deg g(x)$或$c_i(x)=0$\quad $i=0,1,\cdots,k$
+\end{example}
+
+\begin{solution}
+    
+    以$g(x)$为除式,对$f(x)$持续做带余除法,得到余式$c_0(x),c_1(x),\cdots,c_{k-1}(x)$和最后的商$c_k(x)$
+    \begin{equation*}
+        f(x)=(x^5+x^4-5x^3-x^2+10x-3)g(x)+(x+2)
+    \end{equation*}
+    \begin{equation*}
+        (x^5+x^4-5x^3-x^2+10x-3)=(x^3-3x+2)g(x)+(2x+1)
+    \end{equation*}
+    \begin{equation*}
+        (x^3-3x+2)=(x-1)g(x)+0
+    \end{equation*}
+
+    故$c_0(x)=x+2,c_1(x)=2x+1,c_2(x)=0,c_3(x)=x-1$,
+
+    即$f(x)=(x-1)[g(x)]^3+(2x+1)g(x)+(x+2)$
+\end{solution}
+
+\begin{example}\label{例题1.1.10}
+    假设$f_0(x^5)+xf_1(x^{10})+x^2f_2(x^{15})+x^3f_3(x^{20})$能被$x^4+x^3+x^2+x+1$整除,证明:$f_i(x)(i=0,1,2,3)$能被$x-1$整除 
+\end{example}
+
+\begin{proof}
+    
+    设$\omega_k$为5次单位根,即
+    \begin{equation*}
+        w_k=\cos \frac{2k\pi}{5}+i\sin\frac{2k\pi}{5}\quad k=0,1,\cdots,4
+    \end{equation*}
+
+    则$\omega_k^5=1$,且$x^4+x^3+x^2+x+1=\prod \limits_{k=1}^{4}(x-\omega_k)$
+
+    所以
+    \begin{equation*}
+        (x-\omega_k)\mid (x^4+x^3+x^2+x+1) \mid \sum\limits_{j=0}^{3}x^jf_j(x^{5(j+1)})\quad k=1,2,3,4
+    \end{equation*}
+
+    由此得到,
+    \begin{equation}\label{方程组1}
+        \begin{cases}
+            f_0(1)+\omega_1f_1(1)+\omega_1^2f_2(1)+\omega_1^3f_3(1)=0,  \\ 
+            f_0(1)+\omega_2f_1(1)+\omega_2^2f_2(1)+\omega_2^3f_3(1)=0,  \\ 
+            f_0(1)+\omega_3f_1(1)+\omega_3^2f_2(1)+\omega_3^3f_3(1)=0,  \\ 
+            f_0(1)+\omega_4f_1(1)+\omega_4^2f_2(1)+\omega_4^3f_3(1)=0,  \\ 
+        \end{cases}
+    \end{equation}
+
+    该方程为关于$f_i(1)(i=0,1,2,3)$的齐次方程,且其系数行列式
+    $       d=\begin{bmatrix}
+            1 & \omega_1 & \omega_1^2 & \omega_1^3 \\ 
+            1 & \omega_2 & \omega_2^2 & \omega_2^3 \\ 
+            1 & \omega_3 & \omega_3^2 & \omega_3^3 \\ 
+            1 & \omega_4 & \omega_4^2 & \omega_4^3 \\ 
+            \end{bmatrix}$为范德蒙德行列式,
+
+    由于$\omega_1\ne \omega_2 \ne \omega_3 \ne \omega_4$,故$d \ne 0\Longrightarrow$方程组\ref{方程组1}只有零解:$f_i(1)=0(i=0,1,2,3)$
+
+    即$f_i(x)(i=0,1,2,3)$能被$x-1$整除 
+\end{proof}
+
+\begin{example}
+    设$\sum\limits_{i=0}^{n-1}x^iP_i(x^{in})=P(x^n)$,且$(x-1)\mid P(x)$,其中$P_i(x)(0\le i\le n-1)$,$P(x)$均为实系数多项式.证明:
+
+    (1)$P_{i}(x)=0,1\le i\le n-1$;\quad(2)$P(x)=0$\quad(3)$P_0(1)=0$
+\end{example}
+
+\begin{proof}
+    \begin{equation*}
+        (x-1)\mid P(x) \Longrightarrow P(1)=0
+    \end{equation*}
+
+    设$\omega_j$为$n$次单位根,即$\omega_j^n=1,j=0,1,\cdots,n-1$
+
+    由于$P(\omega_j^n)=P(1)=0$,将$\omega_j$代入$\sum\limits_{i=0}^{n-1}x^iP_i(x^{in})=P(x^n)$中,得
+    \begin{equation*}
+        P_0(1)+\omega_jP_1(1)+\omega_j^2P_2(1)+\cdots +\omega_j^{n-1}P_{n-1}(1)=0\quad 0\le j\le n-1
+    \end{equation*}
+
+    同\cref{例题1.1.10},可解得$P_0(1)=P_1(1)=\cdots=P_{n-1}(1)=0$
+
+    设$P_{n-1}(x)=\sum\limits_{t=0}^s a_tx^t$,任取其中一项$a_m x^m(m\ge 1)$,考虑其在$x^{n-1}P_{n-1}(x^{(n-1)n})$中的对应项:
+    \begin{equation}\label{1.1.8}
+        x^{n-1}a_m (x^{(n-1)n})^m=a_mx^{n-1+m(n-1)n}
+    \end{equation}
+
+    \vspace{4pt}
+    对于$0\le i <n-1$,易知$x^i P_i(x^{in})$都不含\cref{1.1.8}的同类项:
+
+    事实上,若某个$x^i P_i(x^{in})$含$cx^{i+kin}$,其中$k$是$P_i(x)$中某个方幂$x^k$的次数,则
+    \begin{equation*}
+        i+kin=n-1+m(n-1)n\Longrightarrow \frac{n-1-i}{n}=ik-m(n-1)
+    \end{equation*}
+
+    真分数=整数,产生矛盾
+
+    \vspace{4pt}
+    同理,$P(x^n)$中也不含\cref{1.1.8}的同类项:
+
+    否则,存在$P(x)$中的某个方幂$x^k$,使得
+    \begin{equation*}
+        kn=n-1+m(n-1)n\Longrightarrow \frac{n-1}{n}=k-m(n-1)
+    \end{equation*}
+
+    真分数=正整数,产生矛盾
+
+    综上,\cref{1.1.8}的系数$a_m=0$,又$P_{n-1}(1)=0\Longrightarrow a_0=0$,
+
+    即$P_{n-1}(x)=0$
+
+    利用同样的证法可证,$P_1(x)=P_2(x)=\cdots P_{n-2}(x)=0$,故$P(x)=0$. 第(1),(2),(3)问均得证
+\end{proof}
+
+\begin{example}
+    设$f(x)$是一个次数大于0的复系数多项式,且满足条件$f(f(x))=[f(x)]^n$,这里$n$是某一个正整数.证明:$f(x)=x^n$
+\end{example}
+
+\begin{proof}
+    设$\deg f(x)=k>0$,则可设$f(x)=a_k x^k+\cdots + a_1 x+a_0$,其中$a_k\ne 0$
+
+    则$f(f(x))=a_k [f(x)]^k+\cdots + a_1 f(x)+a_0$
+
+    故$\deg f(f(x))=\deg [f(x)]^k=k^2$
+
+    又$\deg [f(x)]^n=nk$,则$k^2=nk\Longrightarrow k=n$
+
+    则$f(f(x))=a_n [f(x)]^n+\cdots + a_1 f(x)+a_0$
+
+    又$f(f(x))=[f(x)]^n\Longrightarrow a_n=1,a_{n-1}=\cdots a_0=0$
+
+    即$f(x)=x^n$
+\end{proof}
+
+\begin{example}
+    设$f(x)\in F[x]$是一个次数大于0的多项式.证明:$f(x)$不可约的充分必要条件是:由“$f(x)$整除两个两个多项式的乘积”可推出“$f(x)$必整除其中的一个”. 
+\end{example}
+
+\begin{proof}
+    [必要性]若$f(x)$在$F$上不可约,且$f(x)\mid (g(x)h(x))$,其中$g(x),h(x)\in F[x]$. 
+
+    如果$f(x)\nmid g(x)$,那么$(f(x),g(x))=1$,必有$f(x)\mid h(x)$
+
+    [充分性]设由$f(x)\mid ((g(x),h(x)))$可推出$f(x)\mid g(x)$或$f(x)\mid h(x)$,下证$f(x)$在$F$上不可约. 
+
+    事实上,若$f(x)$在$F$上可约,则$\exists a_1(x),a_2(x)\in F[x]$,使得$f(x)=a_1(x)a_2(x)$,
+    
+    其中,$0<\deg a_i(x)< \deg f(x)\quad i=1,2$
+
+    于是$f(x)\mid (a_1(x)a_2(x))\Longrightarrow f(x)\mid a_1(x)$或$f(x)\mid a_2(x)$
+
+    次数产生矛盾. 故$f(x)$在$F$上不可约. 
+\end{proof}
+
+\begin{example}
+    设$f(x)$是数域$\mathbb{K}$上的一个次数大于0的一元多项式.证明:$f(x)$是一个不可约多项式$p(x)$的幂(即$\exists n\in \mathbb{N}^+$,使得$f(x)=p^m(x))$的充分必要条件是,对任意的多项式$g(x)$和$h(x)$,若$f(x)\mid (g(x)h(x))$,则必有$f(x)\mid g(x)$或$f(x)\mid h^n(x)$,其中$n$是某一个正整数.
+\end{example}
+
+\begin{proof}
+    [必要性]设$f(x)=p^m(x)$,且对任意$g(x),h(x)\in\mathbb{K}[x]$,都有$f(x)\mid (g(x)h(x))$. 
+    
+    若$f(x)\nmid g(x)$,则$f(x)$与$h(x)$不互素,则$p(x)\mid h(x)\Longrightarrow p(x)^m \mid h(x)^m$,令$n=m$,则$f(x)\mid h^n(x)$
+
+    [充分性]反证法.假设对任意不可约多项式$p(x)$及正整数$m$,有$f(x)=p^m(x)h(x)$,
+    
+    其中$\deg h(x)>0$,且$p(x)\nmid h(x)$.则$f(x)$不是任何一个不可约多项式$p(x)$的幂. 
+    
+    取$g(x)=p^m(x)$,则$f(x)\mid ((g(x)h(x)))$,但$f(x)\nmid g(x)$
+
+    则$\exists n\in N^+,$使得$f(x)\mid h^n(x)$,故$p(x)\mid f(x)\mid h^n(x)$
+
+    又$p(x)$为不可约多项式,则必有$p(x)\mid h(x)$,产生矛盾.$f(x)$必是某个不可约多项式的幂.
 \end{proof}
