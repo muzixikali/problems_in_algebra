@@ -1,0 +1,249 @@
+\section{最大公因式与互素}
+
+\begin{knowledge}[线性表示最小公因式]
+    对于$\mathbb{K}[x]$中的任意两个多项式$f(x),g(x)$,在$\mathbb{K}[x]$中一定存在最大公因式$d(x)$,
+
+    且存在$u(x),v(x)\in \mathbb{K}[x]$使得$d[x]=u(x)f(x)+v(x)g(x)$
+\end{knowledge}
+
+\begin{knowledge}[互素的充要条件]
+    多项式$f(x),g(x)\in \mathbb{K}[x]$互素的充分必要条件是存在$u(x),v(x)\in \mathbb{K}[x]$,使得
+    \begin{equation}
+        u(x)f(x)+v(x)g(x)=1
+    \end{equation}
+\end{knowledge}
+
+\begin{knowledge}[B$\acute{e}$zout(裴蜀)定理]\label{裴蜀定理}
+    设$f(x),g(x)\in \mathbb{K}[x]$的次数分别为$m,n$,且$(f(x),g(x))=1$,则存在唯一的$u(x),v(x)\in \mathbb{K}[x]$,使得
+    \begin{equation*}
+        u(x)f(x)+v(x)g(x)=1,\mbox{且}\deg u(x)\le n-1,\deg v(x)\le m-1
+    \end{equation*}
+\end{knowledge}
+
+\begin{knowledge}[互素与整除1]
+    设$f(x)\mid (g(x)h(x))$,且$(f(x),g(x))=1$,则$f(x)\mid h(x)$
+\end{knowledge}
+
+\begin{knowledge}[互素与整除2]
+    设$f_1(x)\mid g(x),f_2(x)\mid g(x)$,且$(f_1(x),f_2(x))=1$,则$(f_1(x)f_2(x))\mid g(x)$
+\end{knowledge}
+
+\begin{knowledge}[不可约多项式与整除1]
+    设$p(x)\in \mathbb{K}[x]$是不可约多项式,则对$f(x)\in \mathbb{K}[x],(p(x),f(x))=1$或$p(x)\mid f(x)$
+\end{knowledge}
+
+\begin{knowledge}[不可约多项式与整除2]
+    设$p(x)\in \mathbb{K}[x]$是不可约多项式,$f(x),g(x)\in \mathbb{K}[x]$,则由$p(x)\mid (f(x),g(x))$一定能推出$p(x)\mid f(x)$或$p(x)\mid g(x)$
+\end{knowledge}
+
+\begin{example}
+    设$f(x)=x^4+x^3-3x^2-4x-1$,$g(x)=x^3+x^2-x-1$,求$u(x),v(x)$使$u(x)f(x)+v(x)g(x)=(f(x),g(x))$
+\end{example}
+
+\begin{solution}
+    直接使用辗转相除法:
+    \begin{center}
+        \begin{tabular}{c|c|c|c}
+            $q_2(x)=$ & $g(x)=x^3+x^2-x-1$ & $f(x)=x^4+x^3-3x^2-4x-1$ & $x=q_1(x)$ \\ 
+            $-\frac{1}{2}x+\frac{1}{4}$ & \quad \quad$x^3+\frac{3}{2}x^2+\frac{1}{2}x$ & $x^4+x^3-x^2-x$ & \\ 
+            \hline
+            & $-\frac{1}{2}x^2-\frac{3}{2}x-1$ & $r_1(x)=-2x^2-3x-1$ & $\frac{8}{3}x+\frac{4}{3}$ \\ 
+            & $-\frac{1}{2}x^2-\frac{3}{4}x-\frac{1}{4}$ & $-2x^2-2x$ & $=q_3(x)$ \\ 
+            \hline 
+            & $r_2(x)=-\frac{3}{4}x-\frac{3}{4}$ & $-x-1$ & \\ 
+            & & $-x-1$ & \\ 
+            \hline
+            & & $r_3(x)=0$
+        \end{tabular}
+    \end{center}
+    
+    得$(f(x),g(x))=x+1$,且$f(x)=q_1(x)g(x)+r_1(x),g(x)=q_2(x)r_1(x)+r_2(x)$,故
+    $$(f(x),g(x))=-\frac{4}{3} r_2(x) = -\frac{4}{3} [g(x)-q_2(x)r_1(x)]=-\frac{4}{3}g(x)+\frac{4}{3}q_2(x)[f(x)-q_1(x)g(x)]$$
+    $$=\frac{4}{3}q_2(x)f(x) - \frac{4}{3}[1+q_1(x)q_2(x)]g(x)$$
+
+    取$u(x)=\frac{4}{3}q_2(x)=-\frac{2}{3}x+\frac{1}{3},v(x)=-\frac{4}{3}[1+q_1(x)q_2(x)]=\frac{2}{3}x^2-\frac{1}{3}x-\frac{4}{3}$,
+
+    则$u(x)f(x)+v(x)g(x)=(f(x),g(x))$
+\end{solution}
+
+\clearpage
+\begin{example}
+    设$f(x)=x^3+(1+k)x^2+2x+2l$与$g(x)=x^3+kx^2+l$的最大公因式是一个二次多项式,求$k,l$的值
+\end{example}
+
+\begin{solution}
+    
+    [法1]令$d(x)=(f(x),g(x)),h(x)=f(x)-g(x)=x^2+2x+l$
+
+    则有$\deg d(x)=\deg h(x)=2$,且$d(x)\mid h(x)$,
+
+    又$d(x),h(x)$都是首1多项式,则$d(x)=h(x)$
+
+    令$g(x)=(x-c)d(x)=(x-c)h(x)=(x-c)(x^2+2x+l)$
+
+    比较系数得$\begin{cases}
+        2-c=k \\ 
+        l-2c=0 \\ 
+        -cl=l 
+    \end{cases}$
+    ,解得$\begin{cases}
+        c=0 \\ 
+        l=0 \\ 
+        k=2
+    \end{cases}$
+    或$\begin{cases}
+        c=-1 \\ 
+        l=-2 \\ 
+        k=3
+    \end{cases}$
+
+    [法2]设$(f(x),g(x))=x^2+ax+b$,则$f(x)=(x-p)(x^2+ax+b),g(x)=(x-q)(x^2+ax+b)$
+
+    比较系数得$\begin{cases}
+        1+k = a-p \\ 
+        2 = b-ap \\ 
+        2l = -bp \\ 
+        k = a-q \\ 
+        0 = b-aq \\ 
+        l = -bq 
+    \end{cases}$,
+    解得
+    $\begin{cases}
+        a=2 \\
+        b=0 \\ 
+        l=0 \\ 
+        k=2 \\ 
+        p=-1 \\ 
+        q=0
+    \end{cases}$或
+    $\begin{cases}
+        a=2 \\
+        p=-2 \\
+        q=-1 \\ 
+        b=-2 \\ 
+        k=3 \\ 
+        l=-2
+    \end{cases}$
+\end{solution}
+
+\begin{example}
+    设$f(x),g(x)\in \mathbb{F}[x],a,b,c,d\in \mathbb{F}$,且$\begin{bmatrix}
+        a & b \\ c & d
+    \end{bmatrix} \ne 0$. 证明:$(f(x),g(x))=(af(x)+bg(x),cf(x)+dg(x))$
+\end{example}
+
+\begin{proof}
+
+    设$\begin{cases}
+        h_1(x)=af(x)+bg(x) \\ 
+        h_2(x)=cf(x)+dg(x)
+    \end{cases}$,并记$d(x)=(f(x),g(x)),d_1(x)=(h_1(x),h_2(x))$
+
+    则$d(x)\mid h_1(x),d(x)\mid h_2(x)\Longrightarrow d(x)\mid d_1(x)$
+
+    另一方面,由于$\begin{bmatrix}
+        a & b \\ c & d
+    \end{bmatrix} =ad-bc \ne 0$
+    ,所以可以解得
+    $\begin{cases}
+        h_1(x)=\frac{d}{ad-bc}f(x)-\frac{b}{ad-bc}g(x) \\ 
+        h_2(x)=-\frac{c}{ad-bc}f(x)+\frac{a}{ad-bc}g(x)
+    \end{cases}$
+
+    故$h_1(x)\mid f(x),h_2(x)\mid g(x) \Longrightarrow d_1(x)\mid f(x),d_2(x)\mid g(x) \Longrightarrow d_1(x)\mid d(x)$
+
+    又$d(x),d_1(x)$都是首1多项式,故$d(x)=d_1(x)$,即$(f(x),g(x))=(h_1(x),h_2(x))$
+\end{proof}
+
+\begin{example}\label{例题1.2.4}
+    设$f(x),g(x)\in \mathbb{P}[x]$,$d(x)=(f(x),g(x))$,且$\deg \frac{f(x)}{d(x)}\ge 1$,$\deg \frac{g(x)}{d(x)}\ge 1$,则存在唯一的$u(x),v(x)\in \mathbb{P}[x]$使得$u(x)f(x)+v(x)g(x)=d(x)$,其中$\deg u(x)<\deg \frac{g(x)}{d(x)},\deg v(x)<\frac{f(x)}{d(x)}$
+\end{example}
+
+\begin{proof}
+    
+    令$f_1(x)=\frac{f(x)}{d(x)}$,$g_1(x)=\frac{g(x)}{d(x)}$,则只需证:存在唯一的$u(x),v(x)\in \mathbb{P}[x]$使得$u(x)f_1(x)+v(x)g_1(x)=1$,
+    
+    其中$\deg u(x)<\deg g_1(x),\deg v(x)<\deg f_1(x)$ 
+
+    [存在性]易知$(f_1(x),g_1(x))=1$,则存在$u_1(x),v_1(x)\in \mathbb{P}[x]$,使得
+    \begin{equation}\label{式1.2.2}
+        u_1(x)f_1(x)+v_1(x)g_1(x)=1
+    \end{equation}
+
+    注意到$\deg f_1(x)\ge 1,\deg g_1(x)\ge 1$,所以$f_1(x)\nmid v_1(x)$且$g_1(x)\nmid u_1(x)$
+
+    由带余除法得,存在唯一的$u(x),v(x)\in \mathbb{P}[x]$,使得
+    \begin{equation}\label{式1.2.3}
+        u_1(x)=p(x)g_1(x)+u(x) \quad \deg u(x) < \deg g_1(x)
+    \end{equation}
+    \begin{equation}\label{式1.2.4}
+        v_1(x)=q(x)f_1(x)+v(x) \quad \deg v(x) < \deg f_1(x)
+    \end{equation}
+
+    将\cref{式1.2.3},\cref{式1.2.4}代入\cref{式1.2.2}得,
+    $$u(x)f_1(x)+v(x)g_1(x)+[p(x)+q(x)]f_1(x)g_1(x)=1$$
+
+    比较次数得,$p(x)+q(x)=0$,于是$u(x)f_1(x)+v(x)g_1(x)=1$
+
+    \clearpage
+    [唯一性]若另存在$u_2(x),v_2(x)\in \mathbb{P}[x]$,使得
+    \begin{equation}\label{式1.2.5}
+        u_2(x)f_1(x)+v_2(x)g_1(x)=1,\mbox{且}
+        \deg u_2(x)<\deg g_1(x),\deg v_2(x)<\deg f_1(x)
+    \end{equation}
+
+    \cref{式1.2.2}与\cref{式1.2.5}相减得,
+    \begin{equation}\label{式1.2.6}
+        [u(x)-u_2(x)]f_1(x)+[v(x)-v_2(x)]g_1(x)=0
+    \end{equation}
+
+    于是$g_1(x)\mid [u(x)-u_2(x)]f_1(x)$.由于$(f_1(x),g_1(x))=1$,故$g_1(x)\mid [u(x)-u_2(x)]$
+
+    但$\deg [u(x)-u_2(x)]<\deg g_1(x)$,故$u(x)-u_2(x)=0$,即$u(x)=u_2(x)$
+
+    又由\cref{式1.2.6}及$\deg g_1(x)\ge 1$得$v(x)-v_2(x)=0\Longrightarrow v(x)=v_2(x)$,
+\end{proof}
+
+\begin{example}
+    求多项式$f(x),g(x)$,使得
+    \begin{equation}
+        x^mf(x)+(1-x)^ng(x)=1   \label{1.2.7}
+    \end{equation}
+\end{example}
+
+\begin{solution}
+    
+    由于$x^m$与$(1-x)^n$互素,合适的$f(x),g(x)$一定存在
+
+    假定$\deg f(x)\le n-1,\deg g(x)\le m-1$,则由\cref{裴蜀定理}或\cref{例题1.2.4}得,$f(x),g(x)$唯一
+
+    不妨令$f(x)=\sum\limits_{i=0}^{n-1}a_i(1-x)^i=\sum\limits_{i=0}^{n-1}(-1)^ia_i(x-1)^i$,$g(x)=\sum\limits_{j=0}^{m-1}b_jx^j$,则
+    $$a_0=f(1)=1,a_i=\frac{(-1)^i}{i!}f^{(i)}(1),b_0=g(0)=1,b_j=\frac{1}{j!}g^{(j)}(0)\quad i=1,\cdots,n-1\quad j=1,\cdots,m-1$$
+
+    利用莱布尼兹(Leibniz)公式对\cref{1.2.7}两边求导得
+    \begin{equation}\label{1.2.8}
+        \sum\limits_{i=0}^{k}C_k^i\frac{m!}{[m-(k-i)]!}x^{m-(k-i)}f^{(i)}(x)+\sum\limits_{i=0}^{k}(-1)^{k-i}C_k^i\frac{n!}{[n-(k-i)]!}(1-x)^{n-(k-i)}g^{(i)}(x)=0
+    \end{equation}
+
+    设$1\le k \le n-1 \Longrightarrow n-k+i\ge 1,i=0,1,\cdots,k$,在\cref{1.2.8}中令$x=1$得
+    $$\sum\limits_{i=0}^{k}C_k^i\frac{m!}{[m-(k-i)]!}f^{(i)}(1)
+    =\sum\limits_{i=0}^{k}\frac{k!}{i!(k-i)!}\frac{m!}{[m-(k-i)]!}\cdot (-1)^ii! a_i
+    =k!\cdot \sum\limits_{i=0}^{k}(-1)^i C_m^{k-i} a_i
+    =0 $$ 
+    $$\Longrightarrow \sum\limits_{i=0}^{k}(-1)^i C_m^{k-i} a_i=0$$
+
+    对$k=1,\cdots,n-1$展开解得
+    $a_i=C_{m+i-1}^i,i=0,1,2,\cdots,n-1$
+
+    同理,设$1\le k \le m-1 \Longrightarrow m-k+i\ge 1,i=0,1,\cdots,k$,在\cref{1.2.8}中令$x=0$得
+    $$\sum\limits_{i=0}^{k}(-1)^{k-i} C_k^i\frac{n!}{[n-(k-i)]!}g^{(i)}(0)
+    =\sum\limits_{i=0}^{k}(-1)^{k-i} \frac{k!}{i!(k-i)!}\frac{n!}{[n-(k-i)]!}\cdot i! b_i
+    =k!\cdot \sum\limits_{i=0}^{k}(-1)^{k-i} C_n^{k-i} a_i
+    =0 $$ 
+    $$\Longrightarrow \sum\limits_{i=0}^{k}(-1)^{k-i} C_n^{k-i} a_i=0$$
+
+    对$k=1,\cdots,m-1$展开解得
+    $b_j=C_{n+j-1}^j,j=0,1,2,\cdots,m-1$
+
+    综上,$f(x)=\sum\limits_{i=0}^{n-1}C_{m+i-1}^i(1-x)^i,g(x)=\sum\limits_{j=0}^{m-1}C_{n+j-1}^jx^j$
+\end{solution}
