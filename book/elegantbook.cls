@@ -1145,7 +1145,7 @@
 \newenvironment{proof}{
   \par\noindent\textbf{\color{second}\proofname\;}
   \color{black!90}\cfs }{\par}
-\newenvironment{solution}{\par\noindent\textbf{\color{main}\solutionname } \citshape}{\par}
+\newenvironment{solution}{\par\noindent\textbf{\color{blue!90}\solutionname } \citshape}{\par}
 \newenvironment{remark}{\noindent\textbf{\color{second}\remarkname} }{\par}
 \newenvironment{assumption}{\par\noindent\textbf{\color{third}\assumptionname } \citshape}{\par}
 \newenvironment{conclusion}{\par\noindent\textbf{\color{third}\conclusionname } \citshape}{\par}
